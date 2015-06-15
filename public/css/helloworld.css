@@ -1,0 +1,52 @@
+/* selector for id="container" */
+
+body {
+    background-color: #D8BFD8;
+}
+#wrapper{
+	background-image: url(http://www.roughguides.com/wp-content/uploads/2013/03/B3PRGT-1680x1050.jpg);
+	background-repeat: repeat-y 2;
+}
+table{
+	background-color: white;
+	padding: 1%;
+	text-align: center;
+}
+ol{
+	list-style: armenian;
+}
+ul{
+	list-style: square;
+}
+body{
+	font-family: helvetica, verdana, "comic sans"
+}
+/*  selector for all "h1" elements
+    that are a descendent of id="container"
+    and have a class of "fancy-header" */
+h1 {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* selector for all "em" elements */
+em {
+    font-weight: bold;
+}
+
+
+h1:hover{
+    text-decoration: bold;
+}
+a:link{
+    color: red;
+}
+a:visited{
+    color: green;
+}
+a:active{
+    color: white;
+}
+a:hover{
+    color: purple;
+}

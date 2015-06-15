@@ -1,0 +1,66 @@
+h1{
+	text-align: center;
+}
+.fancy-header{
+	font-size: 1.5em;
+	font-family: 'Alegreya', 'EB Garamond', 'IM Fell English', serif; 
+}
+a:link{
+	color:blue;
+}
+a:hover{
+	color:black;
+	background-color: salmon;
+}
+a:visited{
+	color: red;
+}
+a:active{
+	color:yellow;
+}
+.colors{
+	width: 300px;
+	margin: auto;
+	font-weight: bold;
+}
+#red, #orange, #yellow, #green, #blue, #purple{
+	border: 1px solid black;
+	margin-bottom: 10px;
+	padding: 10px;
+	height: 50px;
+	width: 150px;
+}
+#red{
+	background-color:red;
+	color:white;
+
+}
+#orange{
+	margin-left: 30px;
+	background-color: orange;
+	color: white;
+}
+#yellow{
+	margin-left: 60px;
+	background-color:yellow;
+}
+#green{
+	margin-left: 90px;
+	background-color: green;
+	color: white;
+}
+#blue{
+	margin-left: 120px;
+	background-color: blue;
+	color: white;
+}
+#purple{
+	margin-left: 150px;
+	background-color: purple;
+	color:white;
+}
+body{
+	background-image: url(http://throwbackthirst.com/wp-content/uploads/2014/07/pink-floyd-dark-side-of-moon.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+}

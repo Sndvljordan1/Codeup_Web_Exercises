@@ -1,0 +1,87 @@
+.ribbon{
+	position: fixed;
+	top:0px;
+	right: 0px;
+	z-index: +1;
+}
+
+.fancy-header{
+	text-align: center;
+	font-size: 1.5em;
+	font-family: 'Alegreya', 'EB Garamond', 'IM Fell English', serif;
+}
+a:link{
+	color:blue;
+}
+
+a:hover{
+	color:black;
+	background-color: salmon;
+}
+
+a:visited{
+	color: red;
+}
+
+a:active{
+	color:yellow;
+}
+
+main{
+	width: 575px;
+	margin: auto;
+}
+
+#red, #orange, #yellow, #green, #blue, #purple{
+	margin-top: 25px;
+	margin-left: 50px;
+	margin-bottom: 25px;
+	border: 1px solid black;
+	padding: 10px;
+	height: 50px;
+	width: 50px;
+	font-style: bolder;
+	float: left;
+}
+
+#red{
+	background-color:red;
+	color:white;
+}
+
+#orange{
+	background-color: orange;
+	color: white;
+}
+
+#yellow{
+	background-color:yellow;
+}
+
+.clearfix{
+	clear: both;
+	margin: 0px;
+	padding: 0px;
+	height: 0px;
+}
+
+#green{
+	background-color: green;
+	color: white;
+}
+
+#blue{
+	background-color: blue;
+	color: white;
+}
+
+#purple{
+	background-color: purple;
+	color:white;
+}
+
+.arrow{
+	position: relative;
+	top:-85px;
+	right:-45px;
+}
