@@ -1,0 +1,24 @@
+step 1 - initialize local repository
+	cd foldername/
+	git init
+	git add <filename>
+	git commit -m "here's my commit message"
+
+step 2 - create remote repository
+	name repository
+	provide description
+	do NOT click "add readme"
+	copy git remote origin command
+
+step 3
+	inside foldername/
+	paste git remote add origin command
+	git push -u origin master
+
+create or edit files
+git add filename
+git commit -m "notes on edit"
+git push -u origin master
+
+recieve files from git
+	git pull origin master
