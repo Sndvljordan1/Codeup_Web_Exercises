@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<title>User Interaction</title>
+	</head>
+	<body>
+		<script>
+		var name;
+		do {
+			name = prompt('What is your name?');
+		} while (!name || name == 'null')
+		alert("Welcome, " + name + "!")
+		if (confirm('Do you like pizza?')){
+		 	alert("Of course you do! Who doesn't");
+		 } else{
+		 	alert('Weirdo')
+		 }
+		</script>
+	</body>
+</html>
