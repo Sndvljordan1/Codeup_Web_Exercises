@@ -8,10 +8,9 @@
 		var names = ['john', 'jacob', 'jingleheimer', 'schmidt']
 		console.log(names)
 		console.log('There are ' + names.length + ' names in this array')
-		console.log('The first name is ' + names[0])
-		console.log('The second name is ' + names[1])
-		console.log('The third name is ' + names[2])
-		console.log('The fourth name is ' + names[3])
+		names.forEach(function(element, index, array){
+			console.log('The name at index ' + index + ' is: ' + element);
+		});
 		</script>
 	</body>
 </html>
