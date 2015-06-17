@@ -10,35 +10,41 @@ if (favorite == 'red') {
 } else {
 	console.log('Nope')
 }
+
 if (favorite == 'orange') {
 	console.log('Go UT! ORANGE and white')
 } else {
-	console.log('Nope')
+	console.log('Nein')
 }
+
 if (favorite == 'yellow') {
 	console.log('Let the YELLOW sunshine in')
 } else {
-	console.log('Nope')
+	console.log('No')
 }
+
 if (favorite == 'green') {
 	console.log ('Go Mean GREEN')
 } else {
-	console.log('Nope')
+	console.log('Nil')
 }
+
 if (favorite == 'blue') {
 	console.log ("Sink or swim, I'm diving into the deep BLUE")
 } else{
-	console.log('Nope')
+	console.log('Nada')
 }
+
 if (favorite == 'indigo') {
 	console.log('INDIGO? You are correct')
 } else {
 	console.log('I do not know anything by that color...')
 }
+
 if (favorite == 'violet') {
 	console.log('VIOLET you are turning VIOLET')
 } else {
-	console.log('I do not know anything by that color...')
+	console.log('Violet? I do not know anything by that color...')
 }
 
 var message = ('favorite') ? "INDIGO? You are correct": "I do not know anything by that color...";
