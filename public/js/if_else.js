@@ -5,46 +5,28 @@ var color = colors[Math.floor(Math.random()*colors.length)];
 
 var favorite = 'indigo'; // TODO: change this to your favorite color from the list
 
+console.log(color)
+
 if (favorite == 'red') {
-	console.log('RED? My, you sure are a sly one')
-} else {
-	console.log('Nope')
-}
-
-if (favorite == 'orange') {
-	console.log('Go UT! ORANGE and white')
-} else {
-	console.log('Nein')
-}
-
-if (favorite == 'yellow') {
-	console.log('Let the YELLOW sunshine in')
-} else {
-	console.log('No')
-}
-
-if (favorite == 'green') {
-	console.log ('Go Mean GREEN')
-} else {
-	console.log('Nil')
-}
-
-if (favorite == 'blue') {
-	console.log ("Sink or swim, I'm diving into the deep BLUE")
+	console.log('RED? My, you sure are a sly one');
+} else if (favorite == 'orange') {
+	console.log('Go UT! ORANGE and white');
+} else if (favorite == 'yellow') {
+	console.log('Let the YELLOW sunshine in');
+} else if (favorite == 'green') {
+	console.log ('Go Mean GREEN');
+} else if (favorite == 'blue') {
+	console.log ("Sink or swim, I'm diving into the deep BLUE");
 } else{
-	console.log('Nada')
+	console.log('Nein');
 }
 
 if (favorite == 'indigo') {
-	console.log('INDIGO? You are correct')
+	console.log('INDIGO? You are correct');
+} else if (favorite == 'violet') {
+	console.log('VIOLET you are turning VIOLET');
 } else {
-	console.log('I do not know anything by that color...')
-}
-
-if (favorite == 'violet') {
-	console.log('VIOLET you are turning VIOLET')
-} else {
-	console.log('Violet? I do not know anything by that color...')
+	console.log('Violet? I do not know anything by that color...');
 }
 
 var message = ('favorite') ? "INDIGO? You are correct": "I do not know anything by that color...";
