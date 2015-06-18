@@ -5,13 +5,18 @@
 	</head>
 	<body>
 		<script>
-		'use strict'
-		var names = ['john', 'jacob', 'jingleheimer', 'schmidt']
-		console.log(names)
-		console.log('There are ' + names.length + ' names in this array')
-		names.forEach(function(element, index, array){
-			console.log('The name at index ' + index + ' is: ' + element);
-		});
+		'use strict';
+		(function (){
+			var names = ['john', 'jacob', 'jingleheimer', 'schmidt'];
+			console.log(names);
+			console.log('There are ' + names.length + ' names in this array');
+			for (var i = 0; i < names.length; i++) {
+		    	console.log('The name at index ' + i + ' is: ' + names[i]);
+				}
+			names.forEach(function (name, index) {
+				console.log('The name at index ' + index + ' is: ' + name);
+			});
+		})();
 		</script>
 	</body>
 </html>

@@ -3,16 +3,22 @@
 		<title>Feeling a littl IIFE</title>
 	</head>
 	<body>
+		<h1>Check the Console</h1>
 		<script>
 			"use strict";
-			 
-			(function sayHello(name) {
-				var myNameIs = 'Jordan'
-				console.log('Hello from ' + name)
-			})();
-			(function isOdd() {
+			(function (){
+				var myNameIs = 'Jordan';
 				var random = Math.floor((Math.random()*100)+1);
-				console.log((random % 2 == 0) ? random + ' is even': random + ' is odd');
+				var message = sayHello(myNameIs);
+				var result = isOdd(random)
+				function sayHello(myNameIs) {
+					return('Hello from ' + myNameIs)
+				};
+				function isOdd(random) {
+					return(random % 2 == 0) ? random + ' is even': random + ' is odd';
+				};
+				console.log(message);
+				console.log(result);
 			})();
 		</script>
 	</body>
