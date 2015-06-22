@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CIRCLES!!!!</title>
+	</head>
+	<body>
+		<h1>CIRCLES!!!!!!!!</h1>
+		<script>
+			'use strict';
+			(function(){
+				var circle = {
+				    radius: 3,
+				    getArea: function () {
+				        return Math.PI * Math.pow(this.radius, 2);
+				    },
+
+				    logInfo: function (round) {
+				        var area = this.getArea();
+				        var message = 'Area of a circle with radius: ' + this.radius + ', is: ';
+				        if (round){
+				        	console.log(message + Math.round(area));
+				        } else {
+				        	console.log(message + area);
+				        }
+				    }
+				};
+				circle.logInfo(false);
+				circle.logInfo(true);
+
+				circle.radius = 5;
+				circle.logInfo(false);
+				circle.logInfo(true);
+			})();
+		</script>
+	</body>
+</html>

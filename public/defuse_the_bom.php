@@ -11,7 +11,7 @@
         'use strict';
         var detonationTimer = 5;
         var interval = 1000;
-        var intervalId = setInterval( function updateTimer(){
+        var intervalId = setInterval(function (){
             if (detonationTimer == 0) {
                 alert('EXTERMINATE!');
                 document.body.innerHTML = '';
@@ -28,5 +28,5 @@
         defuser.addEventListener('click', defuseTheBOM, false);
     </script>
 
-
+// var intervalId = setInterval(updateTimer, 1000);
 </body></html>

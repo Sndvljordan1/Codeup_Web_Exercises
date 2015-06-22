@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+		<title>User Interaction</title>
+	</head>
+	<body>
+		<script>
+		"use strict"
+		var helloWorld = function(input) {
+			if (input === '' || input === ' ') {
+				return alert("Hello, World!");
+			} else if (typeof input == "string"){
+				return alert("Hello " + input + "!");
+			} else {
+				return alert("That's not a valid input.");
+			}
+		};
+		helloWorld('');
+		helloWorld("Codeup");
+		helloWorld(null);
+
+		</script>
+	</body>
+</html>
