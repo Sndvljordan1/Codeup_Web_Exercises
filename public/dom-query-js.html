@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +6,7 @@
 </head>
 <body>
     <h1 id="main-header">Hello World!</h1>
+    <button id='what'>"Don't click me Bro"</button>
     <ul>
         <li data-dbid="1">Item 1</li>
         <li data-dbid="2">Item 2</li>
@@ -14,7 +14,9 @@
         <li data-dbid="4">Item 4</li>
         <li data-dbid='5'>Item 5</li>
     </ul>
+    <button id="who">"Stahp it" </button>
     <h2 id="sub-header">Hello Again.</h2>
+    <button id='where'>"Again????"</button>
     <p class="sub-paragraph">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -24,45 +26,39 @@
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
         culpa qui officia deserunt mollit anim id est laborum.
     </p>
-
+    <button id='why'>"I give up."</button>
     <script>
         "use strict";
         (function() {
-            // TODO: Uncomment next line and get the main header element by id
-            var mainHeader = document.getElementById('main-header');
-            mainHeader.innerHTML = 'JavaScript is Cool';
-            
-
-            // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-
-            // TODO: Uncomment the next line and get the sub header element by id
-            var subHeader = document.getElementById('sub-header');
-            subHeader.style.color = '#00f';
-
-            // TODO: Set the text color of subHeader to blue
-
-            // TODO: Uncomment the next line and get all list items
-            var listItems = document.getElementsByTagName('li');
-            
-
-            for (var i = 0; i < listItems.length; i++) {
-                var dbid = listItems[i].getAttribute("data-dbid");
-                if (dbid == 1) {
-                    listItems[i].style.color = '#00f';
-                } else if (dbid % 2 == 0) {
-                    listItems[i].style.color = '#ccc';
-                } else {
+            var listener = function (event) {
+                var mainHeader = document.getElementById('main-header');
+                mainHeader.innerHTML = 'JavaScript is Cool';
+            }
+            document.getElementById('what').addEventListener('click', listener, false);
+            var listener1 = function(event){
+                var subHeader = document.getElementById('sub-header');
+                subHeader.style.color = '#00f';
+            }
+            document.getElementById('where').addEventListener('click', listener1, false);
+            var listener2 = function(event){
+                var listItems = document.getElementsByTagName('li');
+                for (var i = 0; i < listItems.length; i++) {
+                    var dbid = listItems[i].getAttribute("data-dbid");
+                    if (dbid == 1) {
+                        listItems[i].style.color = '#00f';
+                    } else if (dbid % 2 == 0) {
+                        listItems[i].style.color = '#ccc';
+                    } else {
                     listItems[i].style.color = '#000';
+                    };
                 };
-            };
-            // TODO: Set text color on every other list item to grey
-            // TODO: Set text color of li with dbid = 1 to blue
-
-            // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-            var subParagraphs = document.getElementsByClassName('sub-paragraph');
-            subParagraphs[0].innerHTML = 'Mission Accomplished!';
-
-            // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+            }
+            document.getElementById('who').addEventListener('click', listener2, false);
+            var listener3 = function(event){
+                var subParagraphs = document.getElementsByClassName('sub-paragraph');
+                subParagraphs[0].innerHTML = 'Mission Accomplished!';
+            }
+            document.getElementById('why').addEventListener('click', listener3, false);
         })();
     </script>
 </body>
