@@ -33,6 +33,7 @@
         	<div class="row">
 	            <div class="col-md-4">
 	              <h3>About me</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut rerum error, alias minus. A expedita, aspernatur dolor eius perferendis cumque deleniti, distinctio cupiditate doloribus et quos, rem sit quo enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic nemo commodi, consequatur aperiam ad perferendis illo voluptatem explicabo ipsa veritatis asperiores reprehenderit cupiditate nam harum excepturi repudiandae nulla! Aspernatur, provident.</p>
 	              <ul>
 	                <li>Proficient with Microsoft Word, Excel, and Publisher</li>
 	                <li>Excellent communication skills</li>
@@ -87,11 +88,30 @@
         
         <script src="js/jquery-1.11.3.js"></script>
         <script src="js/jquery.js"></script>
-        
+    
+
         <script>
-            $('.row').ready(function(){
-                $('.row').css('background-color', '#def');
-                $('.row').css('border', '#cad 12px  dotted')
+        //*Using jQuery, set the font-size of all li elements to 20px.
+        //Craft selectors that highlight all the h1, p, and li elements.
+        //Create a jQuery statement to alert the contents of your h1 element(s).
+            $(document).ready(function(){
+                $('li').css('font-size', '20px');
+                $('li').css('color', '#00f')
+                $('li, h1, p').css('background-color', '#FF0');
+                var contents = $('h1');
+                $('p').dblclick(function(){
+                    $(this).css('font-size', '18px');
+                });
+                $('h1').click(function(){
+                    $('h1').css('background-color', '#CAD');
+                });
+                $('li').hover(function(){
+                    $('li').css('color', '#F00');
+                    $('li').css('background-color', 'chartreuse')
+                }, function(){
+                    $('li').css('color', 'aqua');
+                    $('li').css('background-color', '#ABC')
+                });
             })
 
         </script>
