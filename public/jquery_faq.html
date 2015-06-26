@@ -4,17 +4,50 @@
 		<title>National Parks FAQ's</title>
 	</head>
 	<body>
-		<h1>National Parks Trivia!</h1>
-		<dl>
-			<dt>Which park has the tallest mountains?</dt>
-			<dd>Mt. McKinley, the highest point in North America at 20,320 feet, can be found in the Denali National Park and Preserve, AK</dd>
-			<dt>How low can we go?</dt>
-			<dd>The lowest point,on the surface, in the entire Western Hemisphere is in Death Valley National park, located in California</dd>
-			<dt>Which Presidents have the most sites named for them?</dt>
-			<dd>Abraham Lincoln and Teddy Roosevelt both come out on top with four sites each</dd>
-			<dt></dt>
-		</dl>
-		Konami Code for Answers
+		<div>
+			<h1>National Parks Trivia!</h1>
+			<dl>
+				<dt>Which park has the tallest mountains?</dt>
+				<dd>Mt. McKinley, the highest point in North America at 20,320 feet, can be found in the Denali National Park and Preserve, AK</dd>
+				<dt>How low can we go?</dt>
+				<dd>The lowest point,on the surface, in the entire Western Hemisphere is in Death Valley National park, located in California</dd>
+				<dt>Which Presidents have the most sites named for them?</dt>
+				<dd>Abraham Lincoln and Teddy Roosevelt both come out on top with four sites each</dd>
+				<dt></dt>
+			</dl>
+		</div>
+		<div>
+			<h1>Parks List</h1>
+		    <h3>Arches</h3>
+		    <ul class='park'>
+		        <li>There are over 2,000 cataloged arches in Arches National Park. In order to be considered an arch, an opening must measure at least three feet (in any direction).</li>
+		        <li>Arches is located in a "high desert," with elevations ranging from 4,085 to 5,653 feet above sea level.</li>
+		        <li>On a daily basis, temperatures may fluctuate as much as 50 degrees.</li>
+		        <li>The forces of nature have acted in concert to create the landscape of Arches, which contains the greatest density of natural arches in the world. </li>
+		        <li>On average, the park receives 8-10 inches (18-23 cm) of precipitation a year.</li>
+		    </ul>
+		    <h3>Badlands</h3>
+		    <ul class='park'>
+		    	<li>The White River Badlands contain the largest assemblage of known late Eocene and Oligocene mammal fossils.</li>
+		    	<li>Formations include ammonites, nautiloids, fish, marine reptiles, and turtles.</li>
+		    	<li>The lighter-colored Sharps Formation was deposited from 28 to 30 million years ago by wind and water as the climate continued to dry and cool.</li>
+		    	<li>rosion began in the Badlands about 500,000 years ago when the Cheyenne River captured streams and rivers flowing from the Black Hills into the Badlands region.</li>
+		    </ul>
+		    <h3>Carlsbad Caverns</h3>
+		    <ul class='park'>
+		    	<li>In 2003, a park employee found a piece of a stone scraper within view of Carlsbad Cavern's entrance that goes back to Ice Age Indian hunters.</li>
+		    	<li>In 2004, archeologists found fragments of two spear points of the Midland-style Paleo Indian projectile points of some 10,000 years ago.</li>
+		    	<li>Carlsbad Caverns National Park is located in the Guadalupe Mountains, a mountain range that runs from west Texas into southeastern New Mexico.</li>
+		    	<li>Carlsbad Caverns National Park contains more than 119 limestone caves that are outstanding in the profusion, diversity and beauty of their formations.</li>
+		    </ul>
+		    
+
+		    
+		    
+		</div>
+		<div>
+		<p class='hint'>Konami Code for Answers</p>
+		</div>
 	</body>
 	<style>
 		.invisible{
@@ -29,18 +62,24 @@
 		$('dt').css('font-style', 'bolder')
 		$('dt').css('font-size', '25px')
 		$('dd').addClass('invisible answer')
+		$('.hint').css('font-size', '10px')
 		var konamiCode = "38,38,40,40,37,39,37,39,66,65,13";
-	        var code = [];
-	        $(document).keyup(function(event){
-	            console.log(event.keyCode);
-	            code.push(event.keyCode);
-	            if (code.toString().indexOf(konamiCode) >= 0){
-	            	$('.answer').toggleClass('invisible');
-	            	code = [];
-	            	
-	            	
-	            };
-	    	});
+        var code = [];
+        $(document).keyup(function(event){
+            console.log(event.keyCode);
+            code.push(event.keyCode);
+            if (code.toString().indexOf(konamiCode) >= 0){
+            	$('.answer').toggleClass('click').fadeIn(2000);
+            	code = [];
+            	
+            	
+            };
+    	});
+    	$('li').click(function(event){
+    		event.preventDefault();
+    		$(this).parent().toggleClass('invisible');
+    	});
+
 	})
 	</script>
 </html>
