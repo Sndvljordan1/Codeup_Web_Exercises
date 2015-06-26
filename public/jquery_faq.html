@@ -4,7 +4,43 @@
 		<title>National Parks FAQ's</title>
 	</head>
 	<body>
-		
+		<h1>National Parks Trivia!</h1>
+		<dl>
+			<dt>Which park has the tallest mountains?</dt>
+			<dd>Mt. McKinley, the highest point in North America at 20,320 feet, can be found in the Denali National Park and Preserve, AK</dd>
+			<dt>How low can we go?</dt>
+			<dd>The lowest point,on the surface, in the entire Western Hemisphere is in Death Valley National park, located in California</dd>
+			<dt>Which Presidents have the most sites named for them?</dt>
+			<dd>Abraham Lincoln and Teddy Roosevelt both come out on top with four sites each</dd>
+			<dt></dt>
+		</dl>
+		Konami Code for Answers
 	</body>
-	<script></script>
+	<style>
+		.invisible{
+			display: none
+		}
+	</style>
+		<script src="js/jquery.js"></script>
+	<script>
+	'use strict';
+	$(document).ready(function(){
+		$('dt').css('font-style', 'oblique')
+		$('dt').css('font-style', 'bolder')
+		$('dt').css('font-size', '25px')
+		$('dd').addClass('invisible answer')
+		var konamiCode = "38,38,40,40,37,39,37,39,66,65,13";
+	        var code = [];
+	        $(document).keyup(function(event){
+	            console.log(event.keyCode);
+	            code.push(event.keyCode);
+	            if (code.toString().indexOf(konamiCode) >= 0){
+	            	$('.answer').toggleClass('invisible');
+	            	code = [];
+	            	
+	            	
+	            };
+	    	});
+	})
+	</script>
 </html>
