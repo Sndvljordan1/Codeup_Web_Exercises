@@ -2,6 +2,11 @@
 <html>
 	<head>
 		<title>National Parks FAQ's</title>
+		<style>
+		.invisible{
+			display: none
+		}
+	</style>
 	</head>
 	<body>
 		<div>
@@ -10,31 +15,46 @@
 				<dt>Which park has the tallest mountains?</dt>
 				<dd>Mt. McKinley, the highest point in North America at 20,320 feet, can be found in the Denali National Park and Preserve, AK</dd>
 				<dt>How low can we go?</dt>
-				<dd>The lowest point,on the surface, in the entire Western Hemisphere is in Death Valley National park, located in California</dd>
+				<dd>The lowest point, on the surface, in the entire Western Hemisphere is in Death Valley National park, located in California and 282 feet below sea level.</dd>
 				<dt>Which Presidents have the most sites named for them?</dt>
 				<dd>Abraham Lincoln and Teddy Roosevelt both come out on top with four sites each</dd>
-				<dt></dt>
+				<dt>What state includes the most National Park Service units?</dt>
+				<dd>California leads the way with 23.</dd>
+				<dt>Where would you find the "Niagara of the South"?</dt>
+				<dd>Cumberland Falls, the largest waterfall east of the Rockies (except Niagara) is known as the "Niagara of the South". Clear water pours over rocks in a fall of more than 60 feet and 125 feet wide. The waterfall is the centerpiece of Cumberland Falls State Park in Kentucky.</dd>
+				<dt>Can you name the largest unit of the National Park System?</dt>
+				<dd>The Wrangell-St. Elias National Park and Preserve in Alaska covers 13.2 million acres, including 8.7 million acres of wilderness area.</dd>
+				<dt>Where would you find the deepest lake in the United States?</dt>
+				<dd>At 1,932 feet, Crater Lake is the deepest lake in the United States. It is the centerpiece of Crater Lake National Park, which is located in southern Oregon.</dd>
+				<dt>Where would you find the longest recorded cave system in the world? </dt>
+				<dd>Mammoth Cave National Park in Kentucky includes more than 336 miles of explored and mapped caves.</dd>
+				<dt>In what state would you find a park that commemorates the completion of the Transcontinental Railroad?</dt>
+				<dd>In Utah. The Golden Spike National Historic Site marks the joining of the Central Pacific and Union Pacific railroads in 1869.</dd>
+				<dt>Can you name a park that once served as a World War II internment camp?</dt>
+				<dd>Located in California's Owens Valley, Manzanar National Historic Site preserves one of ten camps at which Japanese American citizens and Japanese aliens were interned during World War II.</dd>
 			</dl>
 		</div>
+
+
 		<div>
 			<h1>Parks List</h1>
-		    <h3>Arches</h3>
-		    <ul class='park'>
+		    <h3 class='park'>Arches</h3>
+		    <ul>
 		        <li>There are over 2,000 cataloged arches in Arches National Park. In order to be considered an arch, an opening must measure at least three feet (in any direction).</li>
 		        <li>Arches is located in a "high desert," with elevations ranging from 4,085 to 5,653 feet above sea level.</li>
 		        <li>On a daily basis, temperatures may fluctuate as much as 50 degrees.</li>
 		        <li>The forces of nature have acted in concert to create the landscape of Arches, which contains the greatest density of natural arches in the world. </li>
 		        <li>On average, the park receives 8-10 inches (18-23 cm) of precipitation a year.</li>
 		    </ul>
-		    <h3>Badlands</h3>
-		    <ul class='park'>
+		    <h3 class='park'>Badlands</h3>
+		    <ul>
 		    	<li>The White River Badlands contain the largest assemblage of known late Eocene and Oligocene mammal fossils.</li>
 		    	<li>Formations include ammonites, nautiloids, fish, marine reptiles, and turtles.</li>
 		    	<li>The lighter-colored Sharps Formation was deposited from 28 to 30 million years ago by wind and water as the climate continued to dry and cool.</li>
 		    	<li>rosion began in the Badlands about 500,000 years ago when the Cheyenne River captured streams and rivers flowing from the Black Hills into the Badlands region.</li>
 		    </ul>
-		    <h3>Carlsbad Caverns</h3>
-		    <ul class='park'>
+		    <h3 class='park'>Carlsbad Caverns</h3>
+		    <ul >
 		    	<li>In 2003, a park employee found a piece of a stone scraper within view of Carlsbad Cavern's entrance that goes back to Ice Age Indian hunters.</li>
 		    	<li>In 2004, archeologists found fragments of two spear points of the Midland-style Paleo Indian projectile points of some 10,000 years ago.</li>
 		    	<li>Carlsbad Caverns National Park is located in the Guadalupe Mountains, a mountain range that runs from west Texas into southeastern New Mexico.</li>
@@ -48,38 +68,37 @@
 		<div>
 		<p class='hint'>Konami Code for Answers</p>
 		</div>
-	</body>
-	<style>
-		.invisible{
-			display: none
-		}
-	</style>
 		<script src="js/jquery.js"></script>
-	<script>
-	'use strict';
-	$(document).ready(function(){
-		$('dt').css('font-style', 'oblique')
-		$('dt').css('font-style', 'bolder')
-		$('dt').css('font-size', '25px')
-		$('dd').addClass('invisible answer')
-		$('.hint').css('font-size', '10px')
-		var konamiCode = "38,38,40,40,37,39,37,39,66,65,13";
-        var code = [];
-        $(document).keyup(function(event){
-            console.log(event.keyCode);
-            code.push(event.keyCode);
-            if (code.toString().indexOf(konamiCode) >= 0){
-            	$('.answer').toggleClass('click').fadeIn(2000);
-            	code = [];
-            	
-            	
-            };
-    	});
-    	$('li').click(function(event){
-    		event.preventDefault();
-    		$(this).parent().toggleClass('invisible');
-    	});
-
-	})
-	</script>
+		<script>
+			'use strict';
+			$(document).ready(function(){
+				$('dt').css('font-style', 'oblique')
+				$('dt').css('font-style', 'bolder')
+				$('dt').css('font-size', '25px')
+				$('dd').addClass('invisible answer')
+				$('.hint').css('font-size', '10px')
+				var konamiCode = "38,38,40,40,37,39,37,39,66,65,13";
+		        var code = [];
+		        $(document).keyup(function(event){
+		            console.log(event.keyCode);
+		            code.push(event.keyCode);
+		            if (code.toString().indexOf(konamiCode) >= 0){
+		            	$('.answer').toggleClass('invisible');
+		            	code = [];
+		        	}
+		    	});
+		    	$('.park').click(function(event){
+		    		event.preventDefault();
+		    		$('ul').removeClass('invisible');
+		    	});
+		    	$('li').click(function(event){
+		    		event.preventDefault();
+		    		$(this).parent().addClass('invisible');
+		    	});
+			});
+		</script>
+	</body>
+	
+		
+	
 </html>
