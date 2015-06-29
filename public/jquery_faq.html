@@ -34,8 +34,6 @@
 				<dd>Located in California's Owens Valley, Manzanar National Historic Site preserves one of ten camps at which Japanese American citizens and Japanese aliens were interned during World War II.</dd>
 			</dl>
 		</div>
-
-
 		<div>
 			<h1>Parks List</h1>
 		    <h3 class='park'>Arches</h3>
@@ -59,11 +57,7 @@
 		    	<li>In 2004, archeologists found fragments of two spear points of the Midland-style Paleo Indian projectile points of some 10,000 years ago.</li>
 		    	<li>Carlsbad Caverns National Park is located in the Guadalupe Mountains, a mountain range that runs from west Texas into southeastern New Mexico.</li>
 		    	<li>Carlsbad Caverns National Park contains more than 119 limestone caves that are outstanding in the profusion, diversity and beauty of their formations.</li>
-		    </ul>
-		    
-
-		    
-		    
+		    </ul>    
 		</div>
 		<div>
 		<p class='hint'>Konami Code for Answers</p>
@@ -83,22 +77,17 @@
 		            console.log(event.keyCode);
 		            code.push(event.keyCode);
 		            if (code.toString().indexOf(konamiCode) >= 0){
-		            	$('.answer').toggleClass('invisible');
+		            	$('.answer').toggle();
 		            	code = [];
 		        	}
 		    	});
 		    	$('.park').click(function(event){
-		    		event.preventDefault();
-		    		$('ul').removeClass('invisible');
+		    		$(this).next().toggle();
 		    	});
 		    	$('li').click(function(event){
-		    		event.preventDefault();
-		    		$(this).parent().addClass('invisible');
+		    		$(this).parent().hide();
 		    	});
 			});
 		</script>
 	</body>
-	
-		
-	
 </html>
