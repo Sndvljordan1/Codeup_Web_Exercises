@@ -1,0 +1,59 @@
+<!Doctype html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+    <body>
+        <section>
+            <main>
+                <div class='container' id='posts'>
+                    <p></p>
+                </div>
+            </main>
+        </section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+            'use strict';
+            (function() {
+                // TODO: Create an ajax GET request for /data/inventory.json
+                var ajaxRequest = $.get('/data/blog.json');
+                
+                
+                // TODO: Take the data from inventory.json and append it to the products table
+                ajaxRequest.always(function(){
+                    console.log('Request sent');
+                });
+                
+                ajaxRequest.fail(function(data, error){
+                    console.log('Request Failed');
+                    console.log(error);
+                });
+
+                ajaxRequest.done(function (data) {
+                    
+                    $('#posts').html('');
+                    console.log(data);
+                    console.log("AJAX call completed successfully!");
+                    console.log("Data returned from server:");
+                    for (var i = 0; i < data.length; i += 1) {
+                        var $div = $('<div>');
+                        $div.append('<h3>' + data[i].title + '</h3>');
+                        $div.append('<p>' + data[i].post + '</p>');
+                        $div.append('<p>' + data[i].categories.join(', ') + '</p>');
+                        $div.append('<p>' + data[i].date + '</p>');
+                        $('#posts').append($div);
+
+                        console.log(data[i].title);
+                        console.log(data[i].post);
+                        console.log(data[i].categories);
+                        console.log(data[i].date)
+                    };
+
+                });
+                   // call by click event
+            
+            })();
+        </script>
+    </body>
+</html>

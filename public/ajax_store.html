@@ -3,60 +3,86 @@
     <head>
         <title>Online Store</title>
     </head>
-    <style>
-        #products{
-            border: 1px solid black;
-        }
-        th{
-            border: 1px solid black;
-        }
-        tr{
-            border: 1px solid black;
-        }
-        td{
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <body>
+        <div>
+            <span class='col-md-3'></span>
+            <h1>My Tool Store</h1>
 
-        <h1>My Tool Store</h1>
+        </div>
+        <div class='col-md-2'></div>
+        <div class='container col-md-8'>
+            
+            <table id="products" class='table-bordered table-striped col-md-6'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Categories</th>
+                    </tr>
+                    
+                </thead>
+                <tbody id="insertProducts" class='inventory'>
+                </tbody>
+            </table>
+            
 
-        <table id="products">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Categories</th>
-                </tr>
-                
-            </thead>
-            <tbody id="insertProducts" class='inventory'>
-            </tbody>
-        </table>
-        <button id='refresh'>Refresh</button>
-
+        </div>
+        <div class='col-md-2'></div>
+        <div class='col-md-2'></div>
+        <button id='refresh' href='#' class='btn btn-lg btn-primary col-md-8'>Refresh</button>
+        <div class='col-md-2'></div>
+        <div>
+            <span class= 'col-md-3'></span>
+            
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
         <script>
         'use strict';
-         function update(){
-            (function () {
-                // TODO: Create an ajax GET request for /data/inventory.json
+        (function() {
+            // TODO: Create an ajax GET request for /data/inventory.json
+            var ajaxRequest = $.get('/data/inventory.json');
 
-                var ajaxRequest = $.get('/data/inventory.json');
+            
+            // TODO: Take the data from inventory.json and append it to the products table
+            ajaxRequest.always(function(){
+                console.log('Request sent');
+            });
+            
+            ajaxRequest.fail(function(data, error){
+                console.log('Request Failed');
+                console.log(error)
+            });
 
-                // TODO: Take the data from inventory.json and append it to the products table
-                ajaxRequest.always(function(){
-                    console.log('Request sent');
-                });
+            ajaxRequest.done(function (data) {
                 
-                ajaxRequest.fail(function(data, error){
-                    console.log('Request Failed');
-                    console.log(error)
-                });
+                $('.inventory').html('');
+                console.log(data);
+                console.log("AJAX call completed successfully!");
+                console.log("Data returned from server:");
+                for (var i = 0; i < data.length; i += 1) {
+                    var $tr = $('<tr>');
+                    $tr.append('<td>' + data[i].title + '</td>');
+                    $tr.append('<td>' + data[i].quantity + '</td>');
+                    $tr.append('<td>' + data[i].price + '</td>');
+                    $tr.append('<td>' + data[i].categories + '</td>');
+                    $('.inventory').append($tr);
 
-                ajaxRequest.done(function (data) {
+                    console.log(data[i].title);
+                    console.log(data[i].quantity);
+                    console.log(data[i].price);
+                    console.log(data[i].categories)
+                };
+
+            });
+               // call by click event
+            $('#refresh').click(function(){
+                var ajaxRequest1 = $.get('/data/inventory.json');
+                ajaxRequest1.done(function (data) {
+
+                    $('.inventory').html('');
                     console.log(data);
                     console.log("AJAX call completed successfully!");
                     console.log("Data returned from server:");
@@ -75,21 +101,15 @@
                     };
 
                 });
-                   // call by click event
-                
-                
-
-                
-                
-                //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-                //             its contents and fields
-                //       HINT: You will want to target #insertProducts for your new HTML elements
             });
-        };
-        update();
-        $('#refresh').click(function(){
-            update();
-        });
+            
+
+            
+            
+            //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+            //             its contents and fields
+            //       HINT: You will want to target #insertProducts for your new HTML elements
+        })();
         </script>
 
     </body>
