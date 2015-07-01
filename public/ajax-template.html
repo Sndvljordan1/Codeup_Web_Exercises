@@ -1,15 +1,26 @@
 <html>
     <head>
-        <title>
+        <title>Weather
         </title>
     </head>
     <body>
-        <h1></h1>
+        <div class='container'>
+            <h1>Weather App</h1>
+        </div>
+        <div class='container'>
+            <table class='table-bordered'>
+                <tr id='3days'>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
         <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
-        <script>
+        <script> 
+        'use strict'
         var ajaxRequest = $.get("http://api.openweathermap.org/data/2.5/forecast",{
             APPID: 'd8073adad1b68cd4c8d34911cd69371f',
-            lat,lon: '',
+            q    : 'San Antonio, Tx',
             units: 'imperial'
         });
 
@@ -25,6 +36,7 @@
         ajaxRequest.done(function(data){
             console.log(data)
         });
+
         </script>
     </body>
 </html>
