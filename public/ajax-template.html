@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>
+        </title>
+    </head>
+    <body>
+        <h1></h1>
+        <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
+        <script>
+        var ajaxRequest = $.get("http://api.openweathermap.org/data/2.5/forecast",{
+            APPID: 'd8073adad1b68cd4c8d34911cd69371f',
+            lat,lon: '',
+            units: 'imperial'
+        });
+
+
+        ajaxRequest.always(function  () {
+            console.log('request sent');
+        });
+
+        ajaxRequest.fail(function(data, error){
+            console.log(error)
+            console.log(ajaxRequest.status)
+        });
+        ajaxRequest.done(function(data){
+            console.log(data)
+        });
+        </script>
+    </body>
+</html>

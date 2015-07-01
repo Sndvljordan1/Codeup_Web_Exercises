@@ -6,10 +6,12 @@
     </head>
     <body>
         <section>
-            <main>
-                <div class='container' id='posts'>
+            <main class='container'>
+                <div id='posts'>
                     <p></p>
                 </div>
+                <input type="text-box">
+                <button id='new'class='btn btn-primary' type='submit'>Create New Post</button>
             </main>
         </section>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -17,6 +19,7 @@
             'use strict';
             (function() {
                 // TODO: Create an ajax GET request for /data/inventory.json
+                var posts = [];
                 var ajaxRequest = $.get('/data/blog.json');
                 
                 
@@ -52,7 +55,21 @@
 
                 });
                    // call by click event
-            
+                var addPost = function(post){
+                    posts.push(post);
+
+                    var header = '<h3>' + post.title + '</h3>';
+                    var content = '<p>' + post.content + '</p>';
+                    var date = '<p>Written: ' + post.date +'</p>';
+                    var categories = '<p>Categories' + post.categories + '</p>';
+                    var htmlString = header + content + date + categories + '<br>';
+                    $('#posts').append(htmlString);
+                };
+                $('#new').click(function(){
+                    var title = $('#post-title').val();
+                    var body = $('#post-body').val();
+                    var categories = $('#post-categories')
+                })
             })();
         </script>
     </body>
