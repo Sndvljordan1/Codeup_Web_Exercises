@@ -10,12 +10,12 @@
          <link href="cover.css" rel="stylesheet">
          <style type="text/css">
             #map-canvas {
-                width: 320px;
-                height: 480px;
+                width: 500px;
+                height: 500px;
                 margin:10px;
             }
         </style>
-         
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDniU0FUZJCs8sFqXRYRwwN3ZEmp4WjX84"></script>
     </head>
     <body>
         <div class="site-wrapper">
@@ -43,7 +43,6 @@
                                 <button id='refresh' class='btn primary-btn btn-md'>Refresh</button>
                             </div>
                             <div class="map">
-                                <button id="mapRefresh">Refresh Map</button>
                                 <div id="map-canvas"></div>
                             </div>
                         </div >
@@ -54,9 +53,10 @@
 
             </div>
         </div>
+
         <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDniU0FUZJCs8sFqXRYRwwN3ZEmp4WjX84"></script>
+        
        <script src='/js/weather.js'></script>
     </body>
 </html>
