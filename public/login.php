@@ -1,31 +1,21 @@
 <?php
-var_dump($_POST);
-session_start();
-
-if(isset($_SESSION['LOGGED_IN_USER'])){
-	header('Location: authorized.php');
-	exit();
-}else{
-	$_SESSION['LOGGED_IN_USER']	= false;
-}
+require_once '../template/Input.php';
+require_once '../template/Authenticate.php';
 function pageController(){
-
-	$data = [];
-	$data['username'] = isset($_POST['username']) ? $_POST['username'] : '';
-	$data['password']= isset($_POST['password']) ? $_POST['password'] : '';
-	if ($data['username'] == '' && $data['password'] == '') {
-		echo "Please enter valid username and password";
-	}elseif (strtolower($data['username']) == 'guest' && strtolower($data['password']) == 'password') {
-		$_SESSION['LOGGED_IN_USER'] = true;
-		header('Location: authorized.php');
+	if(Auth::check()){
+		header("Location: authorized.php");
 		exit();
-	}else{
-		echo "Login Failed";
 	}
-	
-	return $data;
+	if (Input::has('password') && Input::has('username')){
+		$username = Input::get('username');
+		$password = Input::get('password');
+		if(Auth::attempt($username, $password)){
+			header("Location: authorized.php");
+			exit();
+		}
+	}
 };
-extract(pageController());
+pageController();
 ?>
 <!DOCTYPE html>
 <html>

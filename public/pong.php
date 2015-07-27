@@ -1,12 +1,13 @@
 <?php 
+require_once '../template/Input.php';
 var_dump($_GET);
 function pageController(){
 	$data = [];
-	if(isset($_GET['name'])){
-		$counter = $_GET['counter'];
-		if($_GET['name'] == 'hit'){
+	if(Input::has('name')){
+		$counter = Input::get('counter');
+		if(Input::get('name') == 'hit'){
 			$counter+=1;	
-		}elseif ($_GET['name'] == 'miss') {
+		}elseif (Input::get('name') == 'miss') {
 			$counter = "Game Over";	
 		}
 	}else{
