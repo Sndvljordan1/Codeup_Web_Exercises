@@ -1,9 +1,6 @@
 <?php 
-define("DB_HOST",'127.0.0.1');
-define("DB_NAME", 'parks_db');
-define("DB_USER", 'parks_user');
-define("DB_PASS", '');
-require 'db_connect.php';
+require_once 'parks_config.php';
+require_once 'db_connect.php';
 
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
 
@@ -52,6 +49,23 @@ $parks = [
      'location'=>'Alaska',
      'date_established'=>'1980-12-02',
      'area_in_acres'=>3674529.68]
+     ,
+    ['name'=>'Biscayne',
+     'location'=>'Florida',
+     'date_established'=>'1980-06-28',
+     'area_in_acres'=>172924.07],
+    ['name'=>'Redwood',
+     'location'=>'California',
+     'date_established'=>'1968-10-02',
+     'area_in_acres'=>112512.05],
+    ['name'=>'Saguaro',
+     'location'=>'Arizona',
+     'date_established'=>'1994-10-14',
+     'area_in_acres'=>91439.71],
+    ['name'=>'Shenandoah',
+     'location'=>'Virginia',
+     'date_established'=>'1926-05-22',
+     'area_in_acres'=>199045.23]
     ];
 
 foreach ($parks as $park) {
@@ -63,4 +77,4 @@ foreach ($parks as $park) {
             '{$park['area_in_acres']}')";
     $dbc->exec($query);
     echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
-}
+};
