@@ -1,5 +1,5 @@
 <?php
-//call files to connect to database
+//call files to connect to database use $config for code reusability
 require_once "$config";
 require_once 'db_connect.php';
  //declare variables for offset, total number of columns/parks, and total number of pages

@@ -1,6 +1,7 @@
 <?php 
 //set limit for use in pagination file 
 $limit = 4;
+//set config variable to be used by paginator
 $config = '../parks_php/parks_config.php';
 //call pagination file
 require_once '../db_controls/db_display_pagination.php';
