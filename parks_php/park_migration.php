@@ -13,8 +13,9 @@ $add = "CREATE TABLE national_parks(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(240) NOT NULL,
     location VARCHAR(240) NOT NULL,
-    date_established DATE NOT NULL,
-    area_in_acres DOUBLE,
+    date_established VARCHAR(12) NOT NULL,
+    area_in_acres VARCHAR(30) NOT NULL,
+    description TEXT NOT NULL,
     PRIMARY KEY(id)
     );";
 //table creating query
