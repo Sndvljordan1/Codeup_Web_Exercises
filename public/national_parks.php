@@ -1,5 +1,8 @@
 <?php 
-require_once '../display_parks.php';
+//set limit for use in pagination file 
+$limit = 4;
+//call pagination file
+require_once '../db_controls/db_display_pagination.php';
  ?>
 <html>
     <head>
@@ -7,6 +10,7 @@ require_once '../display_parks.php';
     </head>
     <body>
         <h1>National Parks</h1>
+        <!-- twitterbootstrap classes for styling -->
         <table class=" col-md-4 container  table table-striped table-bordered">
             <thead>
                 <tr>
@@ -17,7 +21,8 @@ require_once '../display_parks.php';
                 </tr>
             </thead>
             <tbody>
-                <? foreach ($parks as $park): ?>
+                <!-- set foreach loop to display information in human friendly manner -->
+                <? foreach ($display as $park): ?>
                     <tr>
                         <td><?="{$park['name']}"; ?></td>
                         <td><?="{$park['location']}"; ?></td> 
@@ -27,12 +32,15 @@ require_once '../display_parks.php';
                 <? endforeach; ?>
             </tbody>
         </table>
+        <!-- allow previous button to be seen on all pages after page 1 -->
         <? if ($page > 1 && $page <= $totalPages): ?>
             <a class='btn btn-primary' href="?page=<?= $page - 1; ?>">PREVIOUS</a>
         <? endif; ?>
+        <!-- allow next button to be seen on all pages before last page -->
         <? if ($page < $totalPages): ?>
             <a class='btn btn-primary' href="?page=<?= $page + 1; ?>">NEXT</a>
         <? endif; ?>
+        <!-- twitterbootstrap cdn for styling -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     </body>
 </html>

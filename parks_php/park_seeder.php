@@ -1,13 +1,14 @@
 <?php 
+//calls config to set constants needed to connect
 require_once 'parks_config.php';
-require_once 'db_connect.php';
-
+//calls file to connect to database
+require_once '../db_controls/db_connect.php';
+//echoes dataase connection status
 echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
-
+//truncates table to eliminate possible duplication of data when seeder is run
 $dbc->exec('TRUNCATE national_parks');
 
-
-
+//data to be insert into table set as array
 $parks = [
     ['name'=> 'Acadia', 
     'location'=> 'Maine', 
@@ -48,8 +49,7 @@ $parks = [
     ['name'=>'Katmai',
      'location'=>'Alaska',
      'date_established'=>'1980-12-02',
-     'area_in_acres'=>3674529.68]
-     ,
+     'area_in_acres'=>3674529.68],
     ['name'=>'Biscayne',
      'location'=>'Florida',
      'date_established'=>'1980-06-28',
@@ -67,7 +67,7 @@ $parks = [
      'date_established'=>'1926-05-22',
      'area_in_acres'=>199045.23]
     ];
-
+//iterating array to input pair each field with correct table keys 
 foreach ($parks as $park) {
     $query = "INSERT INTO national_parks 
         (name, location, date_established, area_in_acres) 
@@ -75,6 +75,8 @@ foreach ($parks as $park) {
             '{$park['location']}', 
             '{$park['date_established']}', 
             '{$park['area_in_acres']}')";
+    //executes insertion query
     $dbc->exec($query);
+    //echoes id's for each park in array in order to verify completion and corret number of entries
     echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 };
