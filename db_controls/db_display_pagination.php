@@ -1,5 +1,6 @@
 <?php
-require_once '../parks_php/parks_config.php';
+//call files to connect to database
+require_once "$config";
 require_once 'db_connect.php';
  //declare variables for offset, total number of columns/parks, and total number of pages
 $offset = 0;
