@@ -58,10 +58,14 @@ $parks = $displayArray;
         <? endif; ?>
 
         <div class="container">
+            <?php foreach ($errors as $error) : ?>
+                <p id="error messages"><?= $error; ?></p>
+             <?php endforeach; ?>
             <form method="POST">
                 <div class="form-group">
                     <label for="name">Name of National Park</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?= isset($_POST['name']) ? Input::get('name') : '' ; ?>" require=' '>
+                    
                 </div>
                 <div class="form-group">
                     <label for="location">Location of Park</label>
@@ -73,15 +77,15 @@ $parks = $displayArray;
                 </div>
                  <div class="form-group">
                     <label for="date">Date of Establishment</label>
-                    <input type="date" class="form-control" name="date" id="date" placeholder="Please enter yyyy-mm-dd">
+                    <input value="<?= isset($_POST['date']) ? Input::get('date') : '' ;  ?>" type="date" class="form-control" name="date" id="date" placeholder="Please enter mm/dd/yyyy" require=' '>
                 </div>
                  <div class="form-group">
                     <label for="area">Area in Acres</label>
-                    <input type="text" class="form-control" name="area" id="area" placeholder="Enter area of park in acres.">
+                    <input value="<?= isset($_POST['area']) ? Input::get('area') : '' ;  ?>" type="text" class="form-control" name="area" id="area" placeholder="Enter area of park in acres." require=' '>                
                 </div>
                  <div class="form-group">
                     <label for="description">Description of Park</label>
-                    <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description of Park"></textarea>
+                    <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description of Park" require=' '><?= isset($_POST['description']) ? Input::get('name') : '' ;  ?></textarea>
                 </div>
                 <input class="btn btn-primary" type="submit" style="float: right">
             </form>
