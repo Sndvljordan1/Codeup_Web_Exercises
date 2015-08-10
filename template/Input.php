@@ -32,6 +32,48 @@ class Input
         }
     }
 
+    public static function getString($key)
+    {
+        $value = static::get($key);
+        htmlspecialchars(strip_tags(trim($value)));
+        if (is_string($value)) {
+            return $value;
+        }else{
+            throw new Exception("Error Processing Request: Input cannot be empty");
+        }
+    }
+
+    public static function getNumber($key)
+    {
+        $value = str_replace(',', '', static::get($key));
+        if (!is_numeric($value)) {
+            throw new Exception("Error Processing Request: Input must be a number");
+            
+        }else{
+            if ($value > 0) {
+               return $value;
+            }else{
+                throw new Exception("Error Processing Request: Value can not be negative");
+            }
+        }
+    }
+
+    public static function getDate($key)
+    {
+        $value = static::get($key);
+        $format = 'm-d-Y';
+        $dateObject = new DateTime($value);
+        if ($dateObject) {
+            return $dateObject->format($format);
+        }else{
+            throw new Exception("Error Processing Request: Input must be valid date");
+            
+        }
+    }
+
+
+ 
+
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
     // The Input class should not ever be instantiated, so we prevent the    //

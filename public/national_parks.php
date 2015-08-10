@@ -71,7 +71,7 @@ $parks = $displayArray;
                     <label for="location">Location of Park</label>
                     <select name="location" id="location" class="form-control">
                         <?php foreach ($states as $state): ?>
-                            <option value="<?= $state; ?>"><?= $state; ?></option>
+                            <option value="<?= isset($_POST['location']) ? $state : '' ;  ?>"><?= $state; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>

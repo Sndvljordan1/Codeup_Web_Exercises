@@ -1,32 +1,55 @@
 <?php 
 require_once '../template/Input.php';
-if (!empty($_POST))
-{
-    if (Input::has('name') && Input::has('location') && Input::has('date') && Input::has('area') && Input::has('description'))
-    {
-        //assigns user posted data to variables
-        $name = Input::get('name');
-        $location = Input::get('location');
-        $inputDate = Input::get('date');
-        $area = Input::get('area');
-        $description = Input::get('description');
-        $formatDate = date("m-d-Y", strtotime($inputDate));
-        //sets query to variable
-        $insertQuery = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) 
+$errors = [];
+if(!empty($_POST)){
+    $insertQuery = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) 
             VALUES (:name, :location, :date_established, :area, :description)";
+    $stmt = $dbc->prepare($insertQuery);
         //prepare database to run query
-        $stmt = $dbc->prepare($insertQuery);
-        //binds values for use by database
+    try {
+    // Create a person
+        $name = Input::getString('name');
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    } catch (Exception $e) {
+            // Report any errors
+        $errors[] = $e->getMessage();
+    }
+    try {
+    // Create a person
+        $location = Input::get('location');
         $stmt->bindValue(':location', $location, PDO::PARAM_STR);
-        $stmt->bindValue(':date_established', $formatDate, PDO::PARAM_STR);
+    } catch (Exception $e) {
+            // Report any errors
+        $errors[] = $e->getMessage();
+    } 
+    try {
+    // Create a person
+        $date = Input::getDate('date');
+        $stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
+    } catch (Exception $e) {
+            // Report any errors
+        $errors[] = $e->getMessage();
+    } 
+    try {
+    // Create a person
+        $area = Input::getNumber('area');
         $stmt->bindValue(':area', $area, PDO::PARAM_STR);
+    } catch (Exception $e) {
+            // Report any errors
+        $errors[] = $e->getMessage();
+    } 
+    try {
+    // Create a person
+        $description = Input::getString('description');
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-        //executes query to add new park
+    } catch (Exception $e) {
+            // Report any errors
+        $errors[] = $e->getMessage();
+    } 
+    
+    if(empty($errors)){
         $stmt->execute();
-    } else
-    {
-        $errorMessage = "To add a park please make sure to complete all fields.";
     }
 }
- ?>
+
+?>
