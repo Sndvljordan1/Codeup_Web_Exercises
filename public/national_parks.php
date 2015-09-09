@@ -58,10 +58,11 @@ $parks = $displayArray;
         <? endif; ?>
 
         <div class="container">
-            <?php foreach ($errors as $error) : ?>
-                <p id="error messages"><?= $error; ?></p>
-             <?php endforeach; ?>
+
             <form method="POST">
+                <?php foreach ($errors as $error) : ?>
+                    <h4 id="error messages"><?= $error; ?></h4>
+                <?php endforeach; ?>
                 <div class="form-group">
                     <label for="name">Name of National Park</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="<?= isset($_POST['name']) ? Input::get('name') : '' ; ?>" require=' '>
@@ -71,13 +72,13 @@ $parks = $displayArray;
                     <label for="location">Location of Park</label>
                     <select name="location" id="location" class="form-control">
                         <?php foreach ($states as $state): ?>
-                            <option value="<?= isset($_POST['location']) ? $state : '' ;  ?>"><?= $state; ?></option>
+                            <option value="<?= $state;  ?>"><?= $state; ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
                  <div class="form-group">
                     <label for="date">Date of Establishment</label>
-                    <input value="<?= isset($_POST['date']) ? Input::get('date') : '' ;  ?>" type="date" class="form-control" name="date" id="date" placeholder="Please enter mm/dd/yyyy" require=' '>
+                    <input value="<?= isset($_POST['date']) ? Input::get('date') : '' ;  ?>" type="date" class="form-control" name="date" id="date" require=' '>
                 </div>
                  <div class="form-group">
                     <label for="area">Area in Acres</label>

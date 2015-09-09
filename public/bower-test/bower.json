@@ -1,0 +1,20 @@
+{
+  "name": "SimApp",
+  "version": "0.1.0",
+  "homepage": "http://codeup.dev",
+  "authors": [
+    "Jordan Sandoval <sndvljordan@aol.com>"
+  ],
+  "description": "This is a test app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.5"
+  }
+}

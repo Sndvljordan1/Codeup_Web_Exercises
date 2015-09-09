@@ -1,101 +1,136 @@
 'use strict';
-(function (){
-    navigator.geolocation.getCurrentPosition(function(position){
-    var ajaxRequest = $.get("http://api.openweathermap.org/data/2.5/forecast",{
-        APPID: 'd8073adad1b68cd4c8d34911cd69371f',
-        q    : 'San Antonio, Tx',
-        units: 'imperial'
+$(function(){
+ 
+ navigator.geolocation.getCurrentPosition(function(position){
+            //MAKES AJEX REQUEST FOR LAT AND LONG
+            var ajaxReq = $.get("http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&cnt=3", {
+                APPID: "c7b7c1d07f4ebe818d8577bb943809f6",
+                units: "imperial"
+            });
+            ajaxReq.always(function(){
+                console.log('req sent');
+            });
+            ajaxReq.fail(function(data, error){
+                console.log('error');
+                console.log(ajaxReq.status);
+            });
+            ajaxReq.done(function(data){
+                var cityName = data.city.name;
+                weatherRender(data);
+                displayMap(position.coords.latitude,position.coords.longitude,cityName);
+                console.log('done');    
+            });
+});
+// =================================================================
+function displayMap(lat,lng,cityName){
+    var latLng = new google.maps.LatLng(lat,lng);
+    var mapOptions = {
+        zoom: 15,
+        center: latLng,
+        animation: google.maps.Animation.DROP,
+    };
+                
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    var marker = new google.maps.Marker({
+      position: latLng,
+      map: map,
+      draggable:true,
+      title:cityName
     });
-
-
-    ajaxRequest.always(function  () {
-        console.log('request sent');
+    google.maps.event.addListener(marker, 'dragend', function() {
+        var latLng = marker.getPosition();
+        var lat = latLng.lat();
+        var lng = latLng.lng();
+        weatherDisplay(lat,lng);
     });
+}
+// =================================================================
+    function weatherRender(data) {
+        var html ="";
+        
+        $('.locationheader').html('<h2>'+ data.city.name+' '+data.city.country +'</h2>');
+            // weather frame 1
+            html += '<div><h3>'+ data.list[0].temp.max + '°F/' +data.list[0].temp.min+'°F'+ '</h3>'+'</div>';
+            html += '<div><p>'+'<img src="http://openweathermap.org/img/w/'+ data.list[0].weather[0].icon + '.png">'+'</p>'+'</div>';
+            html += '<div><p>'+data.list[0].weather[0].main+': '+ data.list[0].weather[0].description + '</p>'+'</div>';
+            html += '<div><p>'+'Humidity: '+ data.list[0].humidity + '</p>'+'</div>';
+            html += '<div>'+'<p>'+'Wind: '+ data.list[0].speed +' mph' +'</p>'+'</div>';
+            html += '<div>'+'<p>'+'Pressure: '+ data.list[0].pressure + '</p>'+'</div>';
+            $('.weatherframes').html(html);
 
-    ajaxRequest.fail(function(data, error){
-        console.log(error)
-        console.log(ajaxRequest.status)
-    });
-    ajaxRequest.done(function (data){
-        console.log(data)
-        $('.weather').html('');
-        for (var i = 0; i <= 16; i +=8){
-            var $city = $('<h3>');
-            $city.append('Location: ' + data.city.name);
-        }
-        // console.log(data);
-        // console.log("AJAX call completed successfully!");
-        // console.log("Data returned from server:");
-        for (var i = 0; i <= 16; i += 8) {
-            var $tr = $('<td>');
-            $tr.append('<h3>' + 'Date: ' + data.list[i].dt_txt + '</h3>'
-                + '<h2>' + 'High/Low Temp: ' + data.list[i].main.temp_max + '/'
-                + data.list[i].main.temp_min + '</h2>'
-                + '<img src="http://openweathermap.org/img/w/'+ data.list[i].weather[0].icon + '.png">' 
-                + '<br>'
-                + 'Conditions: ' + data.list[i].weather[0].description );
-            $('.weather').append($tr);
+            // weather frame 2
+            html = '<div>'+'<h3>'+ data.list[1].temp.max + '°F/' +data.list[1].temp.min+'°F '+'</h3>'+'</div>';
+            html += '<div>'+'<p>'+'<img src="http://openweathermap.org/img/w/'+ data.list[1].weather[0].icon + '.png">'+'</p>'+'</div>';
+            html += '<div>'+'<p>'+data.list[1].weather[0].main+': '+ data.list[1].weather[0].description + '</p>'+'</div>';
+            html += '<div>'+'<p>'+'Humidity: '+ data.list[1].humidity + '</p>'+'</div>';
+            html += '<div>'+'<p>'+'Wind: '+ data.list[1].speed +' mph' +'</p>'+'</div>';
+            html += '<div>'+'<p>'+'Pressure: '+ data.list[1].pressure + '</p>'+'</div>';
+            $('.weatherframes2').html(html);
 
-            // console.log(data.list[i].dt_txt);
-            // console.log(data.list[i].main.temp_min);
-            // console.log(data.list[i].main.temp_max);
-            // console.log(data.list[i].weather[0].description);
-        };
+            // weather frame 3            
+            html = '<div>'+'<h3>'+ data.list[2].temp.max + '°F/' +data.list[2].temp.min+'°F'+ '</h3>'+'</div>';
+            html += '<div>'+'<p>'+'<img src="http://openweathermap.org/img/w/'+ data.list[2].weather[0].icon + '.png">'+'</p>'+'</div>';
+            html += '<div>'+'<p>'+data.list[2].weather[0].main+': '+ data.list[2].weather[0].description + '</p>'+'</div>';
+            html += '<div>'+'<p>'+'Humidity: '+ data.list[2].humidity + '</p>'+'</div>';
+            html += '<div>'+'<p>'+'Wind: '+ data.list[2].speed +' mph' +'</p>'+'</div>';
+            html += '<div>'+'<p>'+'Pressure: '+ data.list[2].pressure + '</p>'+'</div>';
+            $('.weatherframes3').html(html);
+            // changes background img based on todays weather
+            if(data.list[0].weather[0].main == "Clouds"){
+                $("#body").css("background", "url(/img/Sky_cloudy.jpg) no-repeat center center fixed");
+            }else if(data.list[0].weather[0].main == "Clear"){
+                $("#body").css("background", "url(/img/clear_sky.jpg) no-repeat center center fixed");
+            }else if(data.list[0].weather[0].main == "Rain"){
+                $("#body").css("background", "url(/img/rainy_days.jpg) no-repeat center center fixed");
+            }else{
+                $("#body").css("background", "color:blue; url(blank)");
+            }
+    };
+// ======================================
+function weatherDisplay(lat,lng){
+    var ajaxReq = $.get("http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + lat + "&lon=" + lng + "&cnt=3", {
+                        APPID: "c7b7c1d07f4ebe818d8577bb943809f6",
+                        units: "imperial"
+                    });
+                    ajaxReq.always(function(){
+                        console.log('req sent');
+                    });
+                    ajaxReq.fail(function(data, error){
+                        console.log('error');
+                        console.log(ajaxReq.status);
+                    });
+                    ajaxReq.done(function(data){
+                        var cityName = data.city.name;
+                        weatherRender(data);
+                        displayMap(lat,lng,cityName)
+                        console.log('done');
+                    });
+};
+// ===================================
 
-    });
-    });
-    $('#refresh').click(function(){
-        ajaxRequest.done(function (data){
-            console.log(data)
-            $('.weather').html('');
-            console.log(data);
-            console.log("AJAX call completed successfully!");
-            console.log("Data returned from server:");
-            for (var i = 0; i < 24; i += 8) {
-                var $tr = $('<td>');
-                $tr.append('<h3>' + 'Date: ' + data.list[i].dt_txt + '</h3>'
-                    + '<h2>' + 'High/Low Temp: ' + data.list[i].main.temp_max + '/'
-                    + data.list[i].main.temp_min + '</h2>'
-                    + '<img src="http://openweathermap.org/img/w/'+ data.list[i].weather[0].icon + '.png">'
-                    + '<br>'
-                    + 'Conditions: ' + data.list[i].weather[0].description );
-                $('.weather').append($tr);
+//FORM INPUT ON CLICK FUNCTION
 
-                console.log(data.list[i].dt_txt);
-                console.log(data.list[i].main.temp_min);
-                console.log(data.list[i].main.temp_max);
-                console.log(data.list[i].weather[0].description);
-            };
+    $('#formId').on('submit',function (e) {
+        e.preventDefault();
+        //MAKING IT AN ARRAY FOR EASY USE
+        var json = $('form').serializeArray();
+        var address = json[0].value;
+        var geocoder = new google.maps.Geocoder();
+        
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                
+                var lat = results[0].geometry.location.lat();
+                var lng = results[0].geometry.location.lng();
 
+                weatherDisplay(lat,lng);
+                displayMap(lat,lng);
+
+            } else {
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
         });
     });
 
-    var address = '112 E Pecan St, San Antonio, TX 78205';
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
-        // Check for a successful result
-        if (status == google.maps.GeocoderStatus.OK) {
-            // Set our map options
-            var mapOptions = {
-            // Set the zoom level
-                zoom: 12,
-                // This sets the center of the map at our location
-                center: { lat: 29.4284595, lng: -98.492433},
-                // Show this map in satellite view
-                mapTypeId: google.maps.MapTypeId.STANDARD
-            };
-            var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-            var marker = new google.maps.Marker({
-                position: mapOptions.center,
-                draggable: true,
-                map: map
-            });
 
-        } else {
-        // Show an error message with the status if our request fails
-        alert("Geocoding was not successful - STATUS: " + status);
-      }
-    });
-
-
-})();
+});

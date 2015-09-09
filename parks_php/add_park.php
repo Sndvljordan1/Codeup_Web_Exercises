@@ -10,9 +10,11 @@ if(!empty($_POST)){
     // Create a person
         $name = Input::getString('name');
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-    } catch (Exception $e) {
+    } catch (LengthException $e) {
             // Report any errors
-        $errors[] = $e->getMessage();
+        $errors[] = "Name - " . $e->getMessage();
+    } catch (InvalidArgumentException $e){
+        $errors[] = "Name - " . $e->getMessage();
     }
     try {
     // Create a person
@@ -20,32 +22,38 @@ if(!empty($_POST)){
         $stmt->bindValue(':location', $location, PDO::PARAM_STR);
     } catch (Exception $e) {
             // Report any errors
-        $errors[] = $e->getMessage();
+        $errors[] = "Location - " . $e->getMessage();
     } 
     try {
     // Create a person
         $date = Input::getDate('date');
         $stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
+    } catch (InvalidArgumentException $e){
+        $errors[] = "Date - " . $e->getMessage();
     } catch (Exception $e) {
             // Report any errors
-        $errors[] = $e->getMessage();
-    } 
+        $errors[] = "Date - " . $e->getMessage();
+    }
     try {
     // Create a person
         $area = Input::getNumber('area');
         $stmt->bindValue(':area', $area, PDO::PARAM_STR);
-    } catch (Exception $e) {
+    } catch (OutOfRangeException $e) {
             // Report any errors
-        $errors[] = $e->getMessage();
-    } 
+        $errors[] = "Area - " . $e->getMessage();
+    } catch (InvalidArgumentException $e){
+        $errors[] = "Area - " . $e->getMessage();
+    }
     try {
     // Create a person
         $description = Input::getString('description');
         $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-    } catch (Exception $e) {
+    } catch (LengthException $e) {
             // Report any errors
-        $errors[] = $e->getMessage();
-    } 
+        $errors[] = "Description - " . $e->getMessage();
+    } catch (InvalidArgumentException $e){
+        $errors[] = "Description - " . $e->getMessage();
+    }
     
     if(empty($errors)){
         $stmt->execute();

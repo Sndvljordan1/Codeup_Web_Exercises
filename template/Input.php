@@ -32,28 +32,36 @@ class Input
         }
     }
 
-    public static function getString($key)
+    public static function getString($key, $min = 0, $max = 500)
     {
         $value = static::get($key);
         htmlspecialchars(strip_tags(trim($value)));
         if (is_string($value)) {
-            return $value;
+            if (strlen($value) > $max) {
+                throw new LengthException("Error Processing Request: Input exceeds maximum number of characters");
+            }elseif(empty($value) || strlen($value) < $min) {
+                throw new LengthException("Error Processing Request: Input cannot be empty");   
+            }
+        return $value;
         }else{
-            throw new Exception("Error Processing Request: Input cannot be empty");
+            throw new InvalidArgumentException("Error Processing Request: Please input text only");
         }
     }
 
-    public static function getNumber($key)
+    public static function getNumber($key, $min = 0, $max = 100000000)
     {
         $value = str_replace(',', '', static::get($key));
         if (!is_numeric($value)) {
-            throw new Exception("Error Processing Request: Input must be a number");
+            throw new InvalidArgumentException("Error Processing Request: Input must be a number");
             
         }else{
             if ($value > 0) {
-               return $value;
-            }else{
-                throw new Exception("Error Processing Request: Value can not be negative");
+                if ($value > $max) {
+                    throw new OutOfRangeException("Error Processing Request: Input exceeds maximum number for valid value");
+                }elseif($value < $min) { 
+                    throw new OutOfRangeException("Error Processing Request: Value can not be negative");
+                }
+                return $value;
             }
         }
     }
@@ -61,6 +69,9 @@ class Input
     public static function getDate($key)
     {
         $value = static::get($key);
+        if ($value == "mm/dd/yyyy") {
+            throw new InvalidArgumentException("Error Processing Request: Please input a`1 valid date");
+        }
         $format = 'm-d-Y';
         $dateObject = new DateTime($value);
         if ($dateObject) {
